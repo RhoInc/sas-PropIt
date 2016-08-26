@@ -1,1 +1,5 @@
 # sas-PropIt
+Propcase character variables while allowing for lowcase and upcase exceptions. Includes exception for first word of the character variable.
+
+## Abstract
+Formatting is important for clarity when reporting descriptive data such as country or subject status. In comes PROPCASE to save the day. “Indonesia” and “Protocol Violation” are certainly easier to read than their UPCASE counterparts. However, PROPCASE is limited. It will convert every word in the argument without exceptions, creating phrases such as “United States Of America” and “Withdrawal By Subject”. These distractions can sometimes be anticipated and fixed, but as new data are collected there is a risk of a renegade “To”, “And” or “Out” hiding somewhere. This paper introduces a macro supplement for PROPCASE which contains a default list of common lowercase words and the option to add or exclude words at the user’s discretion. With this macro, the user will specify lowercase words in an efficient and dynamic way, allowing confidence in formatting across deliveries.
