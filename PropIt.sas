@@ -10,14 +10,14 @@ PURPOSE:     Propcase character variables while allowing for lowcase and upcase 
 
 ARGUMENTS:   Var      => REQUIRED. Variable of interest
              ExLow    => OPTIONAL. List of words to exclude from lowercase exceptions to propcase. Enclose in %str().
-             AddLow   => OPTIONAL. Additional lowercase exceptions to propcase. Enclose in %str() and start list with |. 
+             AddLow   => OPTIONAL. Additional lowercase exceptions to propcase. Enclose in %str(). 
              FFlag    => OPTIONAL. Flag denoting that the first word in every character string will be propcase.
              UpList   => OPTIONAL. Upcase exceptions to propcase. Enclose in %str(), include | delimiter.
 
 OUTPUT:      &Var._Prop:  The propcase version of character variable allowing for user-specified exceptions.
 
 Examples:
-%PropIt(var=orgtxt,exlow=%str(but),addlow=%str(|found|after),fflag=Y,uplist=%str(hiv|hcv));
+%PropIt(var=orgtxt,exlow=%str(but),addlow=%str(found|after),fflag=Y,uplist=%str(hiv|hcv));
 %PropIt(var=orgtxt,exlow=,addlow=,fflag=,uplist=%str(hiv|hcv));
 
 
@@ -63,7 +63,10 @@ DATE        PROGRAMMER          DESCRIPTION
       %let LowList=&OrgLowList;
    %end;
 
-   %let LowList=%str(&LowList&AddLow.);
+   %if &AddLow ne %then %do;
+      %let LowList=%str(&LowList|&AddLow.);
+   %end;
+
    %put LowList with Additions= &LowList;
 
    *Procase variable with lowcase exceptions;
